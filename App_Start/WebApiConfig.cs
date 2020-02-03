@@ -27,10 +27,12 @@ namespace ODataTest
             //Code I added
             ODataModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Product>("Products");
-            config.MapODataServiceRoute(
+            config.MapODataServiceRoute
+                (
                 routeName: "ODataRoute",
                 routePrefix: null,
-                model: builder.GetEdmModel());
+                model: builder.GetEdmModel()
+                );
         }
     }
 }
