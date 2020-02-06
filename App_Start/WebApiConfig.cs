@@ -12,27 +12,13 @@ namespace ODataTest
     {
         public static void Register(HttpConfiguration config)
         {
-            //Standart Code
-            // Web API configuration and services
-            // Web API routes
-            config.MapHttpAttributeRoutes();
-
-            config.Routes.MapHttpRoute 
-            (
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
-            //Code I added
+            // New code:
             ODataModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Product>("Products");
-            config.MapODataServiceRoute
-                (
+            config.MapODataServiceRoute(
                 routeName: "ODataRoute",
                 routePrefix: null,
-                model: builder.GetEdmModel()
-                );
+                model: builder.GetEdmModel());
         }
     }
 }

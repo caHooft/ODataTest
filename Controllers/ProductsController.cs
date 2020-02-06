@@ -30,12 +30,14 @@ namespace ODataTest.Controllers
         {
             return db.Products;
         }
+
         [EnableQuery]
         public SingleResult<Product> Get([FromODataUri] int key)
         {
             IQueryable<Product> result = db.Products.Where(p => p.Id == key);
             return SingleResult.Create(result);
         }
+
         public async Task<IHttpActionResult> Post(Product product)
         {
             if (!ModelState.IsValid)
@@ -77,6 +79,7 @@ namespace ODataTest.Controllers
             }
             return Updated(entity);
         }
+
         public async Task<IHttpActionResult> Put([FromODataUri] int key, Product update)
         {
             if (!ModelState.IsValid)
@@ -105,6 +108,7 @@ namespace ODataTest.Controllers
             }
             return Updated(update);
         }
+
         public async Task<IHttpActionResult> Delete([FromODataUri] int key)
         {
             var product = await db.Products.FindAsync(key);
